@@ -1,24 +1,42 @@
-Great helper for converting device tree from any image where they exist!
-Just transfer your file and edit your dts after editing pack everything back into the original image!
+# DTB Converter
 
-p.s You need install Python
+Tools for extracting DTB blobs from an image, editing DTS sources, and packing the result back into a new image.
 
-Examle How Work:
+## Requirements
 
-Unpack:
-![1](https://github.com/roma21515/DTB-CONVERTER/assets/65499745/706dba58-61dd-4da6-ba34-5545cb69fd9f)
-![2](https://github.com/roma21515/DTB-CONVERTER/assets/65499745/5c985072-a0c3-4675-8205-1edc29298c8b)
-![3](https://github.com/roma21515/DTB-CONVERTER/assets/65499745/b922a509-2a53-4969-83ab-5e9c4ba10892)
+- Python 3
+- `dtc` (Device Tree Compiler)
 
+Example install on Debian/Ubuntu:
 
-Packing after edit your dts:
+```bash
+sudo apt update
+sudo apt install python3 device-tree-compiler
+```
 
-![4](https://github.com/roma21515/DTB-CONVERTER/assets/65499745/52430197-1a2c-41bf-b982-60a9d8896a1f)
-![5](https://github.com/roma21515/DTB-CONVERTER/assets/65499745/aa28906a-71a5-4d19-8bbc-1b2df8b3f357)
+## Linux: single-script workflow
 
+Use the Linux helper script from the repository root:
 
+```bash
+./dtb_tool_linux.sh
+```
 
+The script provides an interactive menu with built-in instructions for:
 
+1. **Unpack image**
+   - Copies your selected image into `Superb_Extract-and_pack_dtb/WorkDir/work.img`
+   - Extracts DTB/DTS files into `Superb_Extract-and_pack_dtb/dtb/`
+2. **Pack image**
+   - Rebuilds DTB files from edited DTS files
+   - Produces `Superb_Extract-and_pack_dtb/your_new_file.img`
+3. **Clean work files**
+   - Removes temporary files (`work.img`, `dtb_offsets.txt`, `dtb/`, and output image)
 
+## Legacy Windows scripts
 
+The original Windows CMD scripts are still available in `Superb_Extract-and_pack_dtb/`:
 
+- `UNPACK_drag_to_me_your_file.cmd`
+- `PACK.cmd`
+- `CLEAR_work_file.cmd`
